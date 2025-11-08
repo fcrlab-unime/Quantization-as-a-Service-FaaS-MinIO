@@ -34,6 +34,8 @@ Follow these steps to install and configure OpenFaaS:
 
 ## Function Creation and Deployment
 
+Remember to change the MinIO env variables inside the .yml file to match the username and password of the deployed service.
+
 1. **Build the Function Image**:
    ```bash
    sudo faas-cli build -f ./quantifai-faas.yml --build-arg PYTHON_VERSION=3.11
@@ -107,7 +109,7 @@ Follow these steps to install and configure OpenFaaS:
 1. **Invoke the Function with a Test JSON File**:
    Replace `test.json` with the path to your input JSON file:
    ```bash
-   curl -X POST -H "Content-Type: application/json" -d @test.json http://127.0.0.1:8080/function/quantifai-faas
+   curl -X POST -H "Content-Type: application/json" -d @test/request.json http://127.0.0.1:8080/function/quantifai-faas
    ```
 
 ---
