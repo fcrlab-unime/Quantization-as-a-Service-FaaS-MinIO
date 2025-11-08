@@ -1,0 +1,21 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  quantifai-faas:
+    lang: python3-http-debian
+    handler: ./quantifai-faas
+    image: localhost:5000/quantifai-faas:latest
+    environment:
+      exec_timeout: 5000s
+      read_timeout: 5000s
+      write_timeout: 5000s
+      MINIO_ENDPOINT: "172.16.6.62:9000"
+      MINIO_ACCESS_KEY: "minioadmin"
+      MINIO_SECRET_KEY: "minioadmin"
+      MINIO_SECURE: "0"
+    annotations:
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "2"
